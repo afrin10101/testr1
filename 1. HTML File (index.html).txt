@@ -1,0 +1,40 @@
+1. HTML File (index.html)
+ <!DOCTYPE html>
+ <html>
+ <head>
+    <title>Java HTML Example</title>
+ </head>
+ <body>
+    <h1>Welcome to Java + HTML</h1>
+    <form action="hello" method="post">
+        Enter your name: <input type="text" name="username" />
+        <input type="submit" value="Submit" />
+    </form>
+ </body>
+ </html>
+ 2. Java Servlet (HelloServlet.java)
+ import java.io.*;
+ import javax.servlet.*;
+ import javax.servlet.http.*;
+ public class HelloServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        String name = request.getParameter("username");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h2>Hello, " + name + "!</h2>");
+        out.println("</body></html>");
+    }
+ }
+ 3. web.xml (Servlet Configuration)
+ <web-app>
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+ </web-app>
